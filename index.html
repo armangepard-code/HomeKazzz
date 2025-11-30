@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GrowQazaqstan</title>
+
+    <style>
+        body {
+            background-color: gold;
+            color: blue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .section {
+            display: none;
+            padding: 40px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        button {
+            padding: 12px 30px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: black;
+        }
+
+        input, textarea {
+            width: 300px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            margin-top: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        #thanksMessage {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
+
+        #escanorImg {
+            display: none;
+            margin-top: 20px;
+            width: 250px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MAIN PAGE -->
+<div id="mainPage" class="section active">
+    <h1>GrowQazaqstan</h1>
+
+    <h2>Welcome to my website!</h2>
+    <p>Click below to leave feedback.</p>
+
+    <button onclick="showFeedback()">Leave Feedback</button>
+
+    <!-- Escanor image appears here -->
+    <img id="escanorImg" src="https://m.media-amazon.com/images/I/61ZOINhlObL._AC_SL1500_.jpg">
+</div>
+
+
+<!-- FEEDBACK PAGE -->
+<div id="feedbackPage" class="section">
+    <h1>Contact Me</h1>
+
+    <form onsubmit="feedbackComplete(event)">
+        <label>Your Name:</label><br>
+        <input type="text" placeholder="Enter your name"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" placeholder="example@email.com"><br><br>
+
+        <label>Message:</label><br>
+        <textarea placeholder="Write your message here..."></textarea><br><br>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <div id="thanksMessage">Thanks for the feedback!</div>
+
+    <br><br>
+    <button onclick="showMain()">Back to Main</button>
+</div>
+
+
+<script>
+    function showFeedback() {
+        document.getElementById("mainPage").classList.remove("active");
+        document.getElementById("feedbackPage").classList.add("active");
+        document.getElementById("thanksMessage").style.display = "none";
+    }
+
+    function showMain() {
+        document.getElementById("feedbackPage").classList.remove("active");
+        document.getElementById("mainPage").classList.add("active");
+    }
+
+    // After clicking SEND
+    function feedbackComplete(event) {
+        event.preventDefault(); // stop page reload
+        
+        // show message
+        document.getElementById("thanksMessage").style.display = "block";
+
+        // wait 1.5 seconds then go to main page
+        setTimeout(() => {
+            showMain();
+
+            // show Escanor image on main page
+            document.getElementById("escanorImg").style.display = "block";
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
+
+
+
